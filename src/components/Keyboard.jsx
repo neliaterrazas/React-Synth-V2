@@ -12,9 +12,10 @@ import finalKey from '../synth art/finalkey.svg';
 import sideKey from '../synth art/sidekeycontrol.svg';
 import {HotKeys} from 'react-hotkeys';
 import Knob from './Knob/Knob';
+import table from '../synth art/table.svg';
 import finalKeyPush from '../synth art/finalkeypush.svg';
 import boardControl from '../synth art/boardcontrolnew.svg';
-import table from '../synth art/table.svg';
+
 
 
 
@@ -23,6 +24,10 @@ class Keyboard extends React.Component {
     super(props);
     console.log(this.props);
   }
+
+
+
+
 
 
 
@@ -36,21 +41,40 @@ class Keyboard extends React.Component {
               display: flex;
               border: 5px solid red;
               justify-content: center;
-              position: relative;
-              z-index: 10;
-              align-self: center;
-
+              margin-top: 250px;
             }
             .knob1small {
               position: relative;
-              bottom: 265px;
-              right: 915px;
+              bottom: 357px;
+              right: 922px;
             }
             .knob2small {
               position: relative;
-              bottom: 263px;
-              right: 877px;
+              bottom: 358px;
+              right: 473px;
               margin: none;
+            }
+            .knob3small {
+              position: relative;
+              bottom: 286px;
+              right: 503px;
+              margin: none;
+            }
+            .knob4small {
+              position: relative;
+              bottom: 216px;
+              right: 532px;
+              margin: none;
+            }
+            .knob5small {
+              position: relative;
+              bottom: 145px;
+              right: 561px;
+            }
+            .knob6small {
+              position: relative;
+              bottom: 76px;
+              right: 592px;
             }
             .row {
               position: relative;
@@ -60,9 +84,14 @@ class Keyboard extends React.Component {
               right: 25px;
               padding-top: 420px;
             }
+            .table img {
+              width: 100%;
+            }
+
             .background-board {
               position: absolute;
             }
+
             .grid-container {
               display: grid;
               position: relative;
@@ -547,17 +576,12 @@ class Keyboard extends React.Component {
             .sideKey {
               margin-left: 48px;
             }
-            .tableBackground img {
-              width: 100%;
-              z-index: -1;
-              position: absolute;
-            }
 
             `}
           </style>
-        <div className="tableBackground">
-          <img src={table}/>
-        </div>
+          <div className="table">
+            <img src={table}/>
+          </div>
         <div className="parent">
 
           <div className="background-board">
@@ -583,7 +607,7 @@ class Keyboard extends React.Component {
             </div>
             <div className="grid-container">
               {this.props.imgSrc.map((instance, i) => (
-                <div key={i} onClick={() => {this.props.playSound(this.props.defaultKeys.notes2[i], this.props.defaultKeys.speed)}} className={this.props.keyClassNames[i]}>
+                <div key={i} className={this.props.keyClassNames[i]}>
                   <img className={this.props.imgClassNames[i][0]} src={require(`../synth art/${instance}.svg`)} alt="" />
                   <img className={this.props.imgClassNames[i][1]} src={require(`../synth art/${instance}push.svg`)} alt="" onClick={() =>{this.props.playSound(this.props.defaultKeys.notes2[i], this.props.defaultKeys.speed)}}/>
                 </div>
@@ -591,7 +615,7 @@ class Keyboard extends React.Component {
             </div>
             <div className="grid-container">
               {this.props.imgSrc.map((instance, i) => (
-                <div key={i} onClick={() =>{this.props.playSound(this.props.defaultKeys.notes3[i], this.props.defaultKeys.speed)}} className={this.props.keyClassNames[i]}>
+                <div key={i} className={this.props.keyClassNames[i]}>
                   <img className={this.props.imgClassNames[i][0]} src={require(`../synth art/${instance}.svg`)} alt="" />
                   <img className={this.props.imgClassNames[i][1]} src={require(`../synth art/${instance}push.svg`)} alt="" onClick={() =>{this.props.playSound(this.props.defaultKeys.notes3[i], this.props.defaultKeys.speed)}}/>
                 </div>
@@ -606,7 +630,7 @@ class Keyboard extends React.Component {
 
             <div className="knob1small">
               <Knob
-                size={30}
+                size={40}
                 numTicks={15}
                 degrees={260}
                 min={1}
@@ -614,6 +638,8 @@ class Keyboard extends React.Component {
                 value={30}
                 color={true}
                 onChange={() =>{this.handleChange}}
+                updateKnob={this.props.updateKnob}
+                knobName={"oscillator"}
                 />
             </div>
             <div className="knob2small">
@@ -626,6 +652,8 @@ class Keyboard extends React.Component {
                 value={30}
                 color={true}
                 onChange={() =>{this.handleChange}}
+                updateKnob={this.props.updateKnob}
+                knobName={"hold"}
                 />
             </div>
             <div className="knob3small">
@@ -638,6 +666,50 @@ class Keyboard extends React.Component {
                 value={30}
                 color={true}
                 onChange={() =>{this.handleChange}}
+                updateKnob={this.props.updateKnob}
+                knobName={"attack"}
+                />
+            </div>
+            <div className="knob4small">
+              <Knob
+                size={30}
+                numTicks={15}
+                degrees={260}
+                min={1}
+                max={100}
+                value={30}
+                color={true}
+                onChange={() =>{this.handleChange}}
+                updateKnob={this.props.updateKnob}
+                knobName={"decay"}
+                />
+            </div>
+            <div className="knob5small">
+              <Knob
+                size={30}
+                numTicks={15}
+                degrees={260}
+                min={1}
+                max={100}
+                value={30}
+                color={true}
+                onChange={() =>{this.handleChange}}
+                updateKnob={this.props.updateKnob}
+                knobName={"sustain"}
+                />
+            </div>
+            <div className="knob6small">
+              <Knob
+                size={30}
+                numTicks={15}
+                degrees={260}
+                min={1}
+                max={100}
+                value={30}
+                color={true}
+                onChange={() =>{this.handleChange}}
+                updateKnob={this.props.updateKnob}
+                knobName={"release"}
                 />
             </div>
             <div>
@@ -648,6 +720,7 @@ class Keyboard extends React.Component {
                 max={100}
                 value={0}
                 onChange={() =>{this.handleChange}}
+                updateKnob={this.props.updateKnob}
                 />
             </div>
           </div>
